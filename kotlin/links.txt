@@ -1,0 +1,3 @@
+https://www.hackerrank.com/challenges/kruskalmstrsub/problem
+https://www.hackerrank.com/challenges/primsmstsub/problem
+https://www.hackerrank.com/challenges/dijkstrashortreach/problem

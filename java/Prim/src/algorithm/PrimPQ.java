@@ -42,7 +42,7 @@ public class PrimPQ {
 
     private static LinkedHashMap<Integer, List<Edge>> graph;
 
-    private static void init(int vertices, int e) {
+    private static void init(int vertices) {
         spanningTree = new boolean[vertices];
         parent = new int[vertices];
         weight = new int[vertices];
@@ -85,8 +85,9 @@ public class PrimPQ {
         }
     }
 
-    private static void run(int vertices, int edges, int source) {
-        init(vertices, edges);
+    private static void run(int vertices, int source) {
+        init(vertices);
+        /*
         add(0, 1, 4);
         add(0, 7, 8);
         add(1, 2, 8);
@@ -101,12 +102,26 @@ public class PrimPQ {
         add(6, 7, 1);
         add(6, 8, 6);
         add(7, 8, 7);
+        */
+        add(0, 1, 2);
+        add(0, 3, 6);
+        add(1, 0, 2);
+        add(1, 2, 3);
+        add(1, 3, 8);
+        add(1, 4, 5);
+        add(2, 1, 3);
+        add(2, 4, 7);
+        add(3, 1, 6);
+        add(3, 2, 8);
+        add(3, 4, 9);
+        add(4, 1, 5);
+        add(4, 2, 7);
+        add(4, 3, 9);
         prim(source);
     }
-
-
     public static void main(String[] args) {
-        run(9, 15, 0);
+        //run(9,  0);
+        run(5,  0);
     }
 
 }

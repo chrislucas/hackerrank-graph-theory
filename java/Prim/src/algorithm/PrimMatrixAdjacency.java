@@ -52,8 +52,9 @@ public class PrimMatrixAdjacency {
         }
     }
 
-    private static void run(int vertices, int source) {
-        init(vertices);
+    private static void run() {
+        /*
+        init(9);
         add(0, 1, 4);
         add(0, 7, 8);
         add(1, 2, 8);
@@ -68,10 +69,27 @@ public class PrimMatrixAdjacency {
         add(6, 7, 1);
         add(6, 8, 6);
         add(7, 8, 7);
-        prim(vertices, source);
+             prim(9, 0);
+        */
+        init(5);
+        add(0, 1, 2);
+        add(0, 3, 6);
+        add(1, 0, 2);
+        add(1, 2, 3);
+        add(1, 3, 8);
+        add(1, 4, 5);
+        add(2, 1, 3);
+        add(2, 4, 7);
+        add(3, 1, 6);
+        add(3, 2, 8);
+        add(3, 4, 9);
+        add(4, 1, 5);
+        add(4, 2, 7);
+        add(4, 3, 9);
+        prim(5, 0);
     }
 
     public static void main(String[] args) {
-        run(9, 0);
+        run();
     }
 }

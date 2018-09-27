@@ -33,6 +33,19 @@ public class PrimMatrixAdjacency {
         graph[v][u] = w;
     }
 
+    /**
+     * Para o grafo do metodo test2() existem 2 possibilidades
+     * de resultados de arvore geradora minima (isso quando comecamos do vertice 0):
+     * a que inclui a aresta 0-7 ou a 1-2.
+     *
+     * Quando usamos o metodo sem fila
+     * de prioridade a aresta 1-2 entra e a aresta 0-7 eh cortada porque o metodo minIndex()
+     * procura o vertice com o 'menor peso de alcance' que ainda nao foi incluido
+     * na MST, e o nesse processo o vertice 1 eh achado primeiro do que o 7.
+     *
+     * Quando usamos uma fila de prioridade o aresta 1-2 eh cortada porque a aresta
+     * 0-7 apesar de ter o mesmo 'peso' foi adicionada antes no heap
+     * */
     private static void prim(int vertices, int source) {
         spanningTree[source] = true;
         weight[source] = 0;
@@ -40,20 +53,21 @@ public class PrimMatrixAdjacency {
             int u = minIndex();
             spanningTree[u] = true;
             for (int v = 0; v < vertices ; v++) {
-                if (graph[u][v] != 0 && ! spanningTree[v] && graph[u][v] < weight[v]) {
-                    weight[v] = graph[u][v];
+                int d = graph[u][v];
+                if (d != 0 && ! spanningTree[v] && d < weight[v]) {
+                    weight[v] = d;
                     parent[v] = u;
                 }
             }
         }
-
         for (int i = 0; i < vertices ; i++) {
-            System.out.printf("UV(%d, %d) W: %d\n", i, parent[i], graph[i][parent[i]]);
+            if (i == source)
+                continue;
+            System.out.printf("U-V(%d, %d) W: %d\n", parent[i], i, graph[i][parent[i]]);
         }
     }
 
-    private static void run() {
-        /*
+    private static void test1() {
         init(9);
         add(0, 1, 4);
         add(0, 7, 8);
@@ -69,8 +83,10 @@ public class PrimMatrixAdjacency {
         add(6, 7, 1);
         add(6, 8, 6);
         add(7, 8, 7);
-             prim(9, 0);
-        */
+        prim(9, 0);
+    }
+
+    private static void test2() {
         init(5);
         add(0, 1, 2);
         add(0, 3, 6);
@@ -87,6 +103,10 @@ public class PrimMatrixAdjacency {
         add(4, 2, 7);
         add(4, 3, 9);
         prim(5, 0);
+    }
+
+    private static void run() {
+        test1();
     }
 
     public static void main(String[] args) {

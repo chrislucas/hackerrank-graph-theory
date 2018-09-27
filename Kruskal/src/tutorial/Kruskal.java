@@ -1,3 +1,4 @@
+package tutorial;
 
 /**
  * https://www.hackerrank.com/challenges/kruskalmstrsub/problem

@@ -70,7 +70,7 @@ public class PrimPQ {
             if (!spanningTree[u]) {
                 spanningTree[u] = true;
                 for (Edge to : graph.get(u)) {
-                    if (to.w < weight[to.v]) {
+                    if (to.w < weight[to.v] && ! spanningTree[to.v]) {
                         weight[to.v] = to.w;
                         parent[to.v] = u;
                         heap.add(new Edge(to.v, to.v, to.w));
@@ -81,28 +81,17 @@ public class PrimPQ {
 
         for (int i = 0; i < parent.length ; i++) {
             if (i != source)
-                System.out.printf("%d %d\n", i, parent[i]);
+                System.out.printf("U-V(%d, %d)\n", parent[i], i);
         }
     }
 
-    private static void run(int vertices, int source) {
+    private static void run() {
+        int vertices = 9, source = 0;
         init(vertices);
-        /*
-        add(0, 1, 4);
-        add(0, 7, 8);
-        add(1, 2, 8);
-        add(1, 7, 11);
-        add(2, 3, 7);
-        add(2, 8, 2);
-        add(2, 5, 4);
-        add(3, 4, 9);
-        add(3, 5, 14);
-        add(4, 5, 10);
-        add(5, 6, 2);
-        add(6, 7, 1);
-        add(6, 8, 6);
-        add(7, 8, 7);
-        */
+        test2(source);
+    }
+
+    private static void test1(int source) {
         add(0, 1, 2);
         add(0, 3, 6);
         add(1, 0, 2);
@@ -119,9 +108,27 @@ public class PrimPQ {
         add(4, 3, 9);
         prim(source);
     }
+
+    private static void test2(int source) {
+        add(0, 1, 4);
+        add(0, 7, 8);
+        add(1, 2, 8);
+        add(1, 7, 11);
+        add(2, 3, 7);
+        add(2, 8, 2);
+        add(2, 5, 4);
+        add(3, 4, 9);
+        add(3, 5, 14);
+        add(4, 5, 10);
+        add(5, 6, 2);
+        add(6, 7, 1);
+        add(6, 8, 6);
+        add(7, 8, 7);
+        prim(source);
+    }
+
     public static void main(String[] args) {
-        //run(9,  0);
-        run(5,  0);
+        run();
     }
 
 }

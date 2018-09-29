@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 /**
  * https://www.hackerrank.com/challenges/primsmstsub/problem
+ * DONE
  * */
 public class SpecialSubtree {
 
@@ -16,16 +17,14 @@ public class SpecialSubtree {
 
     private static final int INF = 1 << 30;
 
-
     private static int minIndex(int weight [], boolean [] mst) {
-        int minIdx = 1, minValue = INF;
+        int minIdx = 0, minValue = INF;
         for (int i = 1; i < weight.length ; i++) {
             if (weight[i] < minValue && ! mst[i]) {
                 minValue = weight[i];
                 minIdx = i;
             }
         }
-
         return minIdx;
     }
 
@@ -35,12 +34,14 @@ public class SpecialSubtree {
         Arrays.fill(weight, INF);
         weight[start] = 0;
         boolean [] mst = new boolean[n];
-        mst[start] = true;
         for (int i = 1; i < n ; i++) {
             int u = minIndex(weight, mst);
+            if (u < 1)
+                continue;
+            mst[u] = true;
             for (int v = 1; v < n; v++) {
                 int d = edges[u][v];
-                if (d > 0 && d < weight[v] && ! mst[v]) {
+                if (d >= 0 && d < weight[v] && ! mst[v]) {
                     weight[v] = d;
                 }
             }
@@ -55,19 +56,23 @@ public class SpecialSubtree {
     }
 
     private static void run() {
-
         try {
             StringTokenizer tk = new StringTokenizer(reader.readLine(), " ");
             int vertices = Integer.parseInt(tk.nextToken());
             int edges= Integer.parseInt(tk.nextToken());
             int [][] graph = new int[vertices+1][vertices+1];
+
+            for (int i = 0; i <vertices+1 ; i++) {
+                Arrays.fill(graph[i], -1);
+            }
+
             for (int i = 0; i < edges ; i++) {
                 tk = new StringTokenizer(reader.readLine(), " ");
                 int u = Integer.parseInt(tk.nextToken());
                 int v = Integer.parseInt(tk.nextToken());
                 int w = Integer.parseInt(tk.nextToken());
-                graph[u][v] = w;
-                graph[v][u] = w;
+                graph[u][v] = graph[u][v] == -1 ? w : Math.min(graph[u][v], w);
+                graph[v][u] = graph[v][u] == -1 ? w : Math.min(graph[v][u], w);;
             }
             int start = Integer.parseInt(reader.readLine());
             writer.printf("%d\n", prims(vertices+1, graph, start));

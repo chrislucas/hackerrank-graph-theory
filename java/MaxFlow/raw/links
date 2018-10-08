@@ -1,0 +1,28 @@
+Leitura
+https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/
+https://www.geeksforgeeks.org/max-flow-problem-introduction/
+https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/flow-FF.html
+
+Minhas implementacoes
+https://github.com/chrislucas/hackerrank-crackingthecodinginterview
+https://github.com/chrislucas/hackerrank-crackingthecodinginterview/tree/master/AnotherStudyFordFulkersonAlgorithm/src/algorithm/maxflow/impl
+https://github.com/chrislucas/hackerrank-crackingthecodinginterview/tree/master/MaxFlowAlgorithm
+
+
+Boa explicacao
+https://www.youtube.com/watch?v=FTk3IoO8rzg
+https://www.ime.usp.br/~maratona/page3/
+
+
+Teoria
+https://www.geeksforgeeks.org/max-flow-problem-introduction/
+https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/flow-FF.html
+http://www.dcc.fc.up.pt/~pribeiro/aulas/daa1415/slides/9_fluxo_14122014.pdf
+
+
+Implementacao numa matriz de adjacencia
+https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/
+
+Maxflow Mincut
+https://www.geeksforgeeks.org/minimum-cut-in-a-directed-graph/
+https://brilliant.org/wiki/max-flow-min-cut-algorithm/

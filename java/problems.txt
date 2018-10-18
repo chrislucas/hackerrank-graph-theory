@@ -1,0 +1,4 @@
+https://www.hackerrank.com/challenges/even-tree/problem?h_r=next-challenge&h_v=zen
+
+Forest Tree (graph theory)
+https://en.wikipedia.org/wiki/Tree_(graph_theory)

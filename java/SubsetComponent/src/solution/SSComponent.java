@@ -42,76 +42,95 @@ public class SSComponent {
             comp--;
         }
 
-        private boolean connected(int p, int q) {
-            return find(p) == find(q);
-        }
-
         private int find(int p) {
             while (parent[p] != p) {
                 p = parent[p];
             }
             return p;
         }
-    }
 
+        @Override
+        public String toString() {
+            return String.format("Componentes %d", comp);
+        }
+    }
     // recuperar o i-esimo bit menos significativo de um numero
     private static int ithlb(long number, int i) {
         return (int) ((number >> i) & 1);
     }
-
-    private static long countComponents(long number) {
+    // tentar conectar os conjuntos disjuntos
+    private static void build(WQU wqu, long number) {
         int bits = (int) (Math.log(number) / Math.log(2) + 1);
-        long components = 0;
         boolean f [] = new boolean[bits];
         for (int i = 0; i < bits ; i++) {
-            if(ithlb(number, i)==1) {
-                f[i] = true;
-            }
+            f[i] = ithlb(number, i) == 1;
         }
         for (int i = 0; i < bits ; i++) {
             if (f[i]) {
                 for (int j = i+1; j < bits ; j++) {
                     if (f[j]) {
-                        components++;
+                        wqu.union(i, j);
                     }
                 }
             }
         }
-        return components;
     }
 
+    private static boolean ispowerof2(long p) {
+        return (p & (p-1)) == 0;
+    }
 
+    // TLE
     private static int run(int q, long numbers []) {
         int acc = 0;
-        LinkedHashMap<Long, Long> table = new LinkedHashMap<>();
-        for (long n : numbers)
-            table.put(n, -1L);
-
+        WQU wqu;
         // gerar todas as combinacoes usando tabela de bits
         for (int i = 1; i <(1<<q) ; i++) {
-            int p = 64;
+            wqu = new WQU(64);
             for (int j = 0; j < q ; j++) {
                 // (i & (1 << j)) > 0  significa que o i-esimo bit esta ligado
-                if ((i & (1 << j)) > 0 && table.get(numbers[j]) == -1) {
-                    table.put(numbers[j], countComponents(numbers[j]));
-                    p -=  table.get(numbers[j]);
-                }
-                else if ((i & (1 << j)) > 0 && table.get(numbers[j]) > -1) {
-                    p -=   table.get(numbers[j]);
+                if ((i & (1 << j)) > 0 && !ispowerof2(numbers[j])) {
+                    build(wqu, numbers[j]);
                 }
             }
-            acc += p;
+            acc += wqu.comp;
         }
         return acc + 64;
     }
 
-    /**
-     * 3
-     * 2 5 9
-     * 8
-     * 4436029718484152282 7960688025537172878 8158153106283749652 816298623023398913 7910562653274884366 4146540260192962824 7707065686924684372 95813014895467638
-     *
-     * */
+    private static int count(long n) {
+        int acc = 0;
+        while (n > 0) {
+            n &= (n-1);
+            acc++;
+        }
+        return acc;
+    }
+
+    private static long run2(int q, long numbers []) {
+        long acc = 0;
+        LinkedHashMap<Long, Integer> graph = new LinkedHashMap<>();
+        WQU wqu;
+        for (long n : numbers) {
+            wqu = new WQU(64);
+            build(wqu, n);
+            graph.put(n, wqu.comp);
+            acc += wqu.comp;
+        }
+
+        for (int i = 1; i < (1 << q) ; i++) {
+            long p = 0;
+            for (int j = 0; j < q ; j++) {
+                if ((i & (1 << j)) > 0) {
+                    p |= numbers[j];
+                }
+            }
+            if (!graph.containsKey(p))
+                graph.put(p, 64 - count(p));
+        }
+        return acc + 64;
+    }
+
     public static void main(String[] args) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -121,7 +140,7 @@ public class SSComponent {
             for (int i = 0; tk.hasMoreTokens() ; i++) {
                 numbers[i] = Long.parseLong(tk.nextToken());
             }
-            System.out.println(run(n, numbers));
+            System.out.println(run2(n, numbers));
         } catch (IOException ignored) {}
     }
 }

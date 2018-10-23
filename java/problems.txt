@@ -1,4 +1,7 @@
 https://www.hackerrank.com/challenges/even-tree/problem?h_r=next-challenge&h_v=zen
+https://www.hackerrank.com/challenges/borrowing-money/problem?utm_campaign=challenge-recommendation&utm_medium=email&utm_source=24-hour-campaign
+https://www.hackerrank.com/challenges/real-estate-broker/problem?utm_campaign=challenge-recommendation&utm_medium=email&utm_source=24-hour-campaign
+https://www.hackerrank.com/challenges/synchronous-shopping/problem?utm_campaign=challenge-recommendation&utm_medium=email&utm_source=24-hour-campaign
 
 Forest Tree (graph theory)
 https://en.wikipedia.org/wiki/Tree_(graph_theory)

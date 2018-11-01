@@ -5,3 +5,28 @@ https://www.hackerrank.com/challenges/synchronous-shopping/problem?utm_campaign=
 
 Forest Tree (graph theory)
 https://en.wikipedia.org/wiki/Tree_(graph_theory)
+
+
+Forest
+https://www.spoj.com/problems/MSTS/
+
+
+
+https://www.spoj.com/problems/IITKESO207SPA3E/
+https://www.spoj.com/problems/CAC/
+https://www.spoj.com/problems/UCBINTD/
+https://www.spoj.com/problems/INVENT/
+https://pl.spoj.com/problems/MST/
+https://www.spoj.com/problems/HKRUSKAL/
+https://www.spoj.com/problems/MDST/
+
+
+Codeforces
+https://codeforces.com/contest/160/problem/D
+https://codeforces.com/problemset/problem/888/G
+https://codeforces.com/problemset/problem/609/E
+https://codeforces.com/problemset/problem/891/C
+https://codeforces.com/problemset/problem/605/B
+https://codeforces.com/problemset/problem/723/F
+
+https://codeforces.com/blog/entry/19979
